@@ -1,21 +1,23 @@
-# Sri Lanka Legal Awareness Platform — project records
+# Batch 001 — Next sprint documentation overlay
 
-Initialized: 2026-11-07. These are **starter records**, not a claim that implementation or evaluation has begun.
+**Date:** 2026-11-08  
+**Purpose:** Begin source-text quality assurance before retrieval/indexing.  
+**Status:** Planning materials only; no new OCR accuracy or legal validation results are claimed.
 
-## How to use
+Files to copy into your existing GitHub working tree:
 
-1. Use `PROJECT_PROMPT_UPDATED.md` to initiate a project chat or update the existing brief.
-2. Store this directory in the project's Git repository. Review changes in pull requests or commits.
-3. At each significant architecture choice, add an ADR and update `docs/decisions/ADR_INDEX.md`.
-4. For every benchmark run, update `docs/metrics/METRICS_LEDGER.md` and link the raw results and commit.
-5. After delivery milestones, update `docs/portfolio/CV_IMPACT_LOG.md` and `docs/portfolio/PITCH_PLAYBOOK.md`.
-6. Before public claims or presentations, check that all numbers are independently reproducible.
+- `docs/phase-0/BATCH_001_TEXT_QA_SPRINT.md`
+- `corpus/reviews/batch-001/OCR_PASSAGE_REVIEW.csv`
+- `corpus/reviews/batch-001/LEGAL_STATUS_CROSSWALK.csv`
 
-**Important:** Files generated in a chat do not automatically become files in your GitHub repository. Download them and commit them. In another chat, provide the latest records unless that chat has direct access to the repo or attached files.
+Review your Git changes before committing:
 
-## Starting status
+```bash
+git status
+git diff --stat
+git add docs/phase-0/BATCH_001_TEXT_QA_SPRINT.md corpus/reviews/batch-001/
+git commit -m "docs: plan Batch 001 OCR validation and legal-status review"
+git push origin main
+```
 
-- Agreed product constraints: do not autonomously take legal action; prioritize verifiable sources, safe abstention, user privacy, and Android + Web goals.
-- Candidate architecture: Flutter + FastAPI + PostgreSQL/pgvector + hosted LLM + evidence-grounded RAG. **Not yet selected or tested.**
-- Metrics: all **NOT MEASURED**.
-- CV claims: **no measured outcomes yet**.
+Do not overwrite prior ADRs, OCR reports, or source manifests. Keep original legal PDFs unchanged. These review sheets are not an approval for AI answers.
