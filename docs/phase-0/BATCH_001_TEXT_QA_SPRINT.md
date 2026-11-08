@@ -59,3 +59,7 @@ Determine whether recovered text from two problematic official-source PDFs is ac
 - **CV/portfolio insight:** Describe the actual QA method and error findings only after completed.
 - **Pitch/story update:** Explain why PDF text presence != trustworthy legal text.
 - **Next verification:** Extend review coverage, map effective dates, and create initial legal QA questions.
+
+## Sampling discipline — conflict-resolution refinement
+
+The six hand-selected passages are a **diagnostic sample**, not a statistically representative estimate of whole-document OCR accuracy. Before examining the derived OCR text, record why each original provision was chosen (for example, beginning/middle/end of the Act or a passage containing a negation, section number, or cross-reference). Do not select only easy-to-read passages to inflate results. Report any exact-match percentage only as a **sampled-passages** result with the numerator, denominator, reviewer, extraction version, and sampling notes. Never label it “overall document OCR accuracy.”
