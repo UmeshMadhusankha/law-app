@@ -37,3 +37,13 @@ The CSV records exact PDF pages, printed pages, source and derivative hashes, sh
 - **Portfolio:** Initial failure taxonomy from real documents, not a completed production ingestion pipeline.
 - **Pitch:** OCR can generate plausible but wrong statutory identifiers; verification is needed before indexing.
 - **Next verification:** Independent manual confirmation, corrected derivative with new hash, then wider stratified sample.
+
+## Project-owner confirmation — 2026-11-08
+
+The project owner reported checking **three selected discrepancies in the National Child Protection Authority Act**, agreeing with the observed `No act` → `Noact` and `paragraph (b)` → `paragraph (6)` differences and with the presence of errors in Penal Code section numbers in section 39. For the third item the owner's message did **not** independently specify the exact affected statutory identifiers; those candidate tokens remain in the AI-assisted preflight and require exact transcription before correction.
+
+The corresponding three rows in `corpus/reviews/batch-001/OCR_PASSAGE_REVIEW.csv` are marked `FAIL` at the **inspected-span level only**. The other three HRCSL rows remain `NOT_REVIEWED`. No complete provisions or whole PDFs have been fully proofread. These are owner-reported confirmations, not a blinded reference-transcription benchmark.
+
+### Scope, stopping rule, and consequence
+
+The owner chose to stop additional manual sampling for now because of a ~10-hour/week development budget. This is a **resource-prioritization decision**, not evidence that the unchecked passages are correct. Keep both OCR derivatives **UNREVIEWED / NOT APPROVED_FOR_ANSWER**. The next sprint should focus on repeatable automatic extraction checks, with targeted manual review of provisions proposed for actual user-facing answers. Do not silently replace original PDFs or impute missing review results.
