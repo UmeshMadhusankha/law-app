@@ -1,49 +1,102 @@
-# Personal & Project Pitch Playbook
+# Presentation and Personal Pitch Playbook
 
-Last updated: 2026-11-07. **Stage: concept and planning.** Scripts should be updated when there is a working prototype or real evaluation data.
+**Initialized:** 2026-11-07  
+**Status:** draft language for a project in **planning/design**, not a shipped app. Customize personal details to what the owner can substantiate. Do not imply the project has already been deployed or legally validated.
 
-## 30-second personal pitch — internship / networking
+## 1. Interview self-introduction — ~25 seconds
 
-> I'm an aspiring AI engineer with experience in machine learning projects, including work connected to Sinhala language evaluation. I'm now planning an AI-powered legal awareness platform focused on Sri Lanka. Rather than making another general chatbot, I'm focusing on evidence-grounded retrieval, verifiable citations, privacy, and testing when the system should refuse to answer. I'm using the project to develop production AI engineering skills and to demonstrate the trade-offs behind the design.
+"I'm an aspiring AI engineer with experience from machine-learning projects, including Sinhala-focused model evaluation. I'm now developing my skills in production AI engineering through a Sri Lankan legal-awareness project. My focus is not simply generating answers: it's designing verifiable legal-source retrieval, clear uncertainty handling, security boundaries and repeatable evaluation. The project is currently in requirements and architecture planning, and I'm documenting trade-offs and evidence as I build."
 
-## 45-second product pitch — general audience
+## 2. Project elevator pitch — ~35 seconds
 
-> People often struggle to find clear, trustworthy explanations of their basic legal rights. I'm designing an Android and web-based legal awareness assistant initially focused on police interactions and fundamental rights in Sri Lanka. The goal is simple: give a plain-language summary, show the relevant official legal sources, explain the strength and limits of the evidence, and expand into detail when needed. It won't act as a lawyer or take legal action for anyone. The engineering challenge is ensuring the sources are valid, current, and accurately cited—especially when the system is uncertain.
+"People often find legal explanations online without knowing which law supports them or whether the source is still current. I'm designing an AI-powered legal-awareness assistant for Sri Lanka, initially covering selected questions about fundamental rights, police interactions and complaint institutions. It will provide a plain-language summary, official source references, an explicit evidence status and a longer explanation. A major design decision is to verify not just that a document is official but also its version and legal effective date. The MVP will use one backend for Android and Web, with publication gated by legal review and safety testing."
 
-## 90-second technical pitch — engineering audience
+## 3. Technical deep-dive — ~90 seconds
 
-> This is an evidence-grounded legal information system, not an autonomous legal agent. I'm evaluating a shared API and structured, version-aware RAG pipeline for Android and Web. Legal documents would be ingested with provenance and effective-date metadata, retrieved using a tested combination of section-aware, keyword, and semantic search, and used to generate constrained answers. Backend checks would validate answer structure and source references; insufficient evidence would trigger a qualified response or abstention. I plan to evaluate retrieval recall, claim-level grounding, citation correctness, appropriate abstention, security tests, latency, and cost by language. Crucially, those are measured properties of the pipeline, not a made-up percentage that the legal answer is correct. I'm documenting choices in ADRs and will only claim outcomes after reproducible benchmarks and relevant legal-source review.
+"I propose a modular monolith: Flutter Web and Android clients call a Python/FastAPI backend. The backend retrieves only approved, versioned legal passages from a PostgreSQL source registry. I'll compare lexical retrieval with vector/hybrid search on a reviewed benchmark rather than assuming embeddings help. A hosted LLM will draft a structured explanation from the retrieved passages, but deterministic validators will check allowed versions, exact citation pointers and output shape. If evidence is missing or a check fails, the system abstains or qualifies the answer. An important limitation is that those checks cannot prove semantic legal correctness; human-reviewed legal scenarios remain essential. We also plan to avoid default chat-history storage and keep secrets entirely on the backend. The system is still in design, so I won't claim benchmark scores or deployment results yet."
 
-## 5-minute group presentation outline
+## 4. Group presentation outline — 5 minutes
 
-1. **0:00–0:45 — Problem:** Why accessible legal information and source reliability matter. Avoid unsupported statistics.
-2. **0:45–1:30 — Intended users and boundaries:** Citizens, police-related interactions, legal information rather than legal representation.
-3. **1:30–2:30 — Product walkthrough:** Question → short answer → exact legal source → evidence status → detailed explanation. If no working app exists, label this as a proposed flow, not a live demo.
-4. **2:30–3:40 — Engineering design:** Versioned corpus, RAG retrieval, deterministic validators, security, no autonomous action tools.
-5. **3:40–4:30 — Evaluation evidence:** Show **only measured** citation, abstention, retrieval, latency and multilingual results; otherwise show the testing plan transparently.
-6. **4:30–5:00 — Limitations, roadmap and ask:** Known legal/regulatory verification needs and next milestone.
+1. **Problem (45s):** An official PDF can still be outdated, and a convincing chatbot can be wrong.
+2. **User and scope (45s):** Ordinary citizens seeking *general* legal awareness; narrowly defined first pilot.
+3. **Core solution (60s):** Summary → legal citations → evidence status → explanation; show a conceptual UI, not a fake working app.
+4. **Architecture (75s):** Shared clients/API, source registry, retrieval, LLM draft, version/citation gates, safe abstention.
+5. **Validation and ethics (45s):** Human-reviewed benchmark, no autonomous actions, data minimization, correction process.
+6. **Status and next step (30s):** Phase 0 documents drafted; source and reviewer validation still pending.
 
-## Demonstration script checklist
+## 5. Honest demo narration — current state
 
-- [ ] State whether the demo is a mock-up, local prototype, beta, or deployed product.
-- [ ] Use a known, reviewed example question; show source title, provision, and applicability/version.
-- [ ] Show an unsupported or ambiguous question and the system's safe fallback.
-- [ ] Explain that generated language can be wrong and how feedback/review works.
-- [ ] Avoid entering private identifying details in a public demonstration.
-- [ ] Do not imply attorney endorsement, government affiliation, or legal accuracy guarantees.
+"This is a design walkthrough, not a live legal advice service. We have a proposed answer format and a documented source-approval workflow. Next we will build a small, reviewed corpus and evaluate retrieval and citation checks before generating user-facing answers."
 
-## Likely audience questions
+**When a working demo later exists:** show one success and one deliberate abstention; cite actual document/version IDs and benchmark run. Never describe unreviewed synthetic answers as verified law.
 
-**Why not just ask a general-purpose AI?** The product is being designed around specific verifiable sources, document versions, visible citations, and independent tests; these properties still need to be demonstrated in the prototype.
+## 6. Difficult interview questions
 
-**How will you avoid hallucinations?** Not by prompting alone: retrieval, backend source checks, explicit evidence sufficiency and abstention, benchmark tests, and reviewer checks. Residual failures remain possible.
+**Q: How do you prevent hallucinations?**  
+A: "I can't guarantee zero hallucinations. I'm designing approved-source retrieval, source/version checks, structured outputs, citation validation, abstention and human-reviewed evaluation. I will report residual error rates when measured."
 
-**How will you handle outdated laws?** Provenance, amendments, effective dates, source versioning, and a planned re-verification workflow; current legal status must be verified before launch.
+**Q: Isn't RAG just searching PDFs?**  
+A: "For legal information, document authority and effective dates matter. The product needs provision-level status, traceable citations, human review and evaluation; indexing documents alone is insufficient."
 
-**What if someone relies on a wrong answer?** Conservative scope, clear limits, safety-oriented product design, appropriate referral, reporting channels, and professional/legal review before release.
+**Q: Why not fine-tune an open-source legal model?**  
+A: "Fine-tuning does not ensure knowledge of current amendments. An approved corpus and retriever provide better auditability initially; we'll test the simpler baseline before adding more model complexity."
 
-**What's your personal technical contribution?** Point to an implemented commit, an ADR, a benchmark and a lesson learned. While still planning, say which decisions and experiments you intend to own.
+**Q: How do you secure prompt injection?**  
+A: "A prompt is not a security boundary. The LLM has no action tools; only approved sources enter retrieval, API keys remain server-side, and outputs are checked by backend policy and tests."
 
-## After each milestone
+**Q: What about Sinhala/Tamil?**  
+A: "They're essential long-term, but legal translation is high risk. We'll validate each language against human-reviewed legal scenarios instead of relying on general multilingual ability."
 
-Record one new before/after demo, one genuine technical lesson, one measurable result where available, one audience-appropriate pitch update, and one question you cannot yet answer.
+**Q: Is it compliant with Sri Lanka's data protection law?**  
+A: "Compliance hasn't yet been established. We've found staged commencement orders and plan to minimize data, review provider processing and engage appropriate legal advice before any public release."
+
+**Q: What have you personally accomplished?**  
+A: "At this stage I have established the project specification and am reviewing the requirements and design proposals. Implementation, tests and measured outcomes are not yet complete. I'll connect future claims to actual code and evaluation artifacts."
+
+## 7. Evidence and delivery practice
+
+For every public talk or interview, update the stage of the project, confirm the demo truly works, cite GitHub commits and evaluation reports, remove unearned claims, and rehearse explaining one design trade-off without buzzwords.
+
+## Story update — 2026-11-08: Why not ingest everything and answer everything?
+
+**30-second explanation (at design stage):**
+
+"I've separated **document discovery** from **validated answer coverage**. Sri Lanka publishes important legal materials across Parliament, official gazettes and court sources, but collecting PDFs alone won't show which provisions were active on a particular date or prove an AI explanation correct. My design preserves past and future laws with explicit status labels, while current legal explanations must cite applicable provisions. I plan to grow the coverage only as legal reviews and benchmark results support it. The system is still in Phase 0; I haven't implemented or measured those controls yet."
+
+**Revenue/ethics question:** "A lawyer directory may be useful later, but paid referrals and commission arrangements raise professional-conduct and privacy issues, so we are not letting potential payments influence legal answers or assuming the business model is permissible."
+
+**Budget question:** "I budgeted the first sprint for manual source cataloguing and evaluation design, rather than paying for an unverified chatbot or broad web crawler."
+
+
+## Pitch update — 2026-11-08: data-driven MVP selection
+
+**Current truthful 20-second explanation:**
+
+"For our Sri Lankan legal-awareness platform, we are organizing official materials into 20 candidate legal areas and comparing source provenance, amendment history, extractability and review feasibility before choosing the first AI-answer topics. The manifest is a research starting point, not a complete or approved legal database. We'll validate selected topics and show both current and historical or upcoming legal changes with clear status labels."
+
+**Interview follow-up:** Why not scrape everything first? "A bulk download is not the same as a reliable corpus. We need provenance, version links and provision-level legal force; I prefer controlled discovery, then quality evaluation, and only then approval for answers."
+
+## Pitch update — Batch 001 real ingestion evidence, 2026-11-08
+
+**25-second engineering explanation:** "We collected ten official-source legal PDFs totaling 538 pages and recorded cryptographic hashes and exact PDF-page provenance. The first extraction showed why legal RAG needs quality gates: one entire Act was image-only, and another had OCR-corrupted text. We are tracking amendments and scheduled commencement separately rather than treating the latest downloaded PDF as complete law. The material is still under review; no AI legal answers have been approved."
+
+**Question: Why not launch now?** "Text extraction is not verification. A legal answer requires the right effective provision, a reliable citation and a reviewed explanation; we haven't measured those capabilities yet."
+
+**Claim discipline:** Do not say 'we indexed 538 pages for reliable legal question answering'. Say 'we enumerated and drafted page-level text for 538 source pages; extraction and legal status still need review'.
+
+## Presentation story — 2026-11-08: Why not simply extract text from every PDF?
+
+**~40-second technical pitch (demonstrated prototype, not deployed service):**
+
+"Our first ingestion batch revealed two different failures. One official Act was image-only, so normal PDF extraction returned nothing. Another had a text layer, but some words were visibly corrupted. This led me to adopt an adaptive ingestion architecture: preserve the original source, detect extraction quality, route scans to OCR, and validate the results before legal text can enter the approved RAG corpus. We tested OCR locally on both examples and recovered searchable text from all 20 pages of the scanned Act. But searchable text is not the same as legally accurate text—manual proofing and measured accuracy are still required."
+
+**Audience takeaway:** Good AI architecture does not mean more folders or tools. It means responding to real failure modes with a reusable, testable safety boundary.
+
+**Whiteboard sketch:** `Original PDF + hash → text inspection → direct extraction OR OCR → page-aligned verification → human/source approval → approved search corpus`.
+
+**Hard questions:**
+
+- **Why not OCR every page?** More compute and possible damage to good digital text; use an adaptive fallback.
+- **Is the problem solved?** Two OCR output PDFs are searchable and visually sampled, but transcription correctness and backend automation are not measured or complete.
+- **What would you measure?** Gold text word error rate, section-number accuracy, page-text presence, review queue size, and ingestion runtime per page.
+- **Who did the work?** The owner explicitly chose the pattern and asked to retain it as an ADR. The initial local OCR conversion was run with assistant help.
