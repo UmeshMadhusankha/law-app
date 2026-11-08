@@ -100,3 +100,11 @@ For every public talk or interview, update the stage of the project, confirm the
 - **Is the problem solved?** Two OCR output PDFs are searchable and visually sampled, but transcription correctness and backend automation are not measured or complete.
 - **What would you measure?** Gold text word error rate, section-number accuracy, page-text presence, review queue size, and ingestion runtime per page.
 - **Who did the work?** The owner explicitly chose the pattern and asked to retain it as an ADR. The initial local OCR conversion was run with assistant help.
+
+## Demo and presentation update — OCR source-quality incident (2026-11-08)
+
+**Short story:** “Our first batch exposed a hidden failure mode in legal AI: even if an OCR PDF is searchable, its text can turn a paragraph (b) reference into paragraph (6). I verified selected examples in the original page image rather than trusting the extracted text. We record those failures before indexing, and do not treat unreviewed material as approved law.”
+
+**Evidence:** Three short-span OCR issues owner-confirmed in the Child Protection Authority Act; other three worksheet items unreviewed. No overall OCR accuracy figure is available. The sample was selected to expose failures, not estimate population-wide error rates.
+
+**Trade-off:** With roughly ten hours/week, prioritize targeted quality gates for candidate answer provisions and automated checks over manually certifying every page now. **Limitation:** A future human/legal review process is still necessary for answer release.
