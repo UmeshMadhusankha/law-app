@@ -105,3 +105,14 @@ These are **document processing diagnostics**. They do not measure transcription
 - **Date:** 2026-11-08. **Environment:** local container, Python 3.13.5, Tesseract 5.5.0, English OCR, PyMuPDF. **Implementation Git commit:** NOT YET COMMITTED.
 - **Input corpus:** uploaded Batch 001, source hashes preserved in `BATCH_MANIFEST.csv`. **OCR derived output:** see `OCR_RUN_2026-11-08.csv`.
 - **Measurement limitation:** no semantic review or gold standard; no claim that OCR is accurate enough for legal AI.
+
+## Batch 001 confirmed-span review update — 2026-11-08
+
+| Evidence item | Definition / population | Result | Limitations / reproducibility |
+|---|---|---|---|
+| Owner-confirmed anomaly instances | Number of distinct short spans in SL-0039 identified in the AI preflight for which owner reported corroboration | **3** | Purposive AI-selected spans; user-reported confirmation; no blind sampling; exact section 39 tokens not supplied by owner. See `corpus/reviews/batch-001/OCR_PASSAGE_REVIEW.csv` and `docs/phase-0/BATCH_001_AI_PREFLIGHT_REPORT.md`. |
+| Outstanding owner review rows | Rows left `NOT_REVIEWED` in the six-item worksheet | **3** | All HRCSL rows. Unchecked does not mean passed. |
+| Whole-document OCR accuracy | Correct gold words / all reviewed gold words | **NOT MEASURED** | No complete, independently transcribed gold passages or representative sample. |
+| Citation-critical findings in owner-confirmed inspected spans | Distinct confirmed observation events affecting internal references or statutory identifiers | **2** | One at s.29(2) and one at s.39; not a count of every affected legal identifier, and not an error rate. |
+
+**Date:** 2026-11-08. **Environment:** owner visual inspection of original-render page samples and OCR comparison; underlying OCR proof of concept uses Tesseract 5.5.0, English, and PyMuPDF. **Benchmark sample:** six purposely selected short spans (three owner-confirmed), not randomly chosen. **Artifact version:** this PR branch; commit SHA to be associated with the eventual merged record. **Legal correctness / effective-date validation:** NOT MEASURED.

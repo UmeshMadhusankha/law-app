@@ -83,3 +83,13 @@ Record date, engineer's own contribution, accepted ADR, tests/dataset, actual re
 - **Future bullet (do not use yet):** "Implemented and evaluated an automated, source-aware PDF extraction pipeline across N verified statutes, achieving X% gold transcription accuracy." Placeholder only.
 - **Evidence:** `docs/decisions/ADR-0008-adaptive-extraction-and-ocr-quality-gates.md`; `corpus/batches/batch-001/OCR_RUN_2026-11-08.csv`; OCR output PDFs; git commit TBD.
 - **Interview STAR outline:** Situation—mixed scans and broken text. Task—avoid feeding corrupted statutory provisions to RAG. Action—choose adaptive OCR plus quality gates, preserve original source and derived text. Result—a small offline feasibility test and traceable samples; quality and production evidence still pending.
+
+## Entry CV-0004 — Owner-confirmed OCR failure modes (2026-11-08)
+
+- **Status:** Three short-span findings confirmed by the project owner; **no whole-document verification or released pipeline**.
+- **Problem:** OCR can silently change legal cross-references and section identifiers in government-source PDFs.
+- **Owner contribution:** Checked and corroborated three highlighted discrepancies in the National Child Protection Authority Act; explicitly prioritized limited review time rather than declaring other samples correct.
+- **Assistant contribution:** Identified candidate anomalies, prepared comparison evidence and updated repository worksheets/documentation.
+- **Observed evidence:** One word-space error, one paragraph-label substitution, and errors involving statutory identifiers in section 39; exact individual tokens of the third issue await owner transcription. See `corpus/reviews/batch-001/OCR_PASSAGE_REVIEW.csv` and the AI preflight report.
+- **Unmeasured:** OCR accuracy, full-provision fidelity, overall corpus quality, legal correctness, and retrieval performance.
+- **Interview-ready story (current scope):** “We discovered that a searchable legal PDF can still contain wrong provision references. I verified three OCR anomalies against source images and retained a quality gate before legal RAG indexing. Broader review and automatic validation remain to be built.”
